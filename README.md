@@ -84,22 +84,6 @@ Each project inside a playground is self-contained, with no imports across proje
 
 <img src="assets/divider.svg" width="100%" alt=""/>
 
-## Featured
-
-### [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) · *playground → sdk-lakehouse*
-A multi-module **Java 17** SDK for declarative, GitOps-style management of Iceberg namespaces and tables. One pipeline codebase applies the same YAML definitions to local MinIO, an AWS Iceberg REST catalog, or **Google BigLake**. You switch targets by changing environment config and dropping in a cloud plugin JAR, which is loaded through a `ServiceLoader` SPI.
-<br/><sub>Java 17 · Apache Iceberg 1.10 · Maven · Docker · AWS · GCP BigLake</sub>
-
-### [Unified Data Platform](https://github.com/x-ruiz/playground-cloud-engineering/tree/main/platform_unified_data_gcp) · *playground → platform-unified-data*
-A GCP data platform foundation managed through GitOps, built on top of [`platform_gcp_org_bootstrap`](https://github.com/x-ruiz/platform_gcp_org_bootstrap) for Org/folder policies, KMS-encrypted remote state, and keyless GitHub Actions auth through Workload Identity Federation (with separate plan and apply identities). The platform is composed from tag-pinned Cloud Foundation Fabric modules, with thin Terragrunt wrappers for `dev`, `uat` and `prod`. Applies to `uat` and `prod` are gated.
-<br/><sub>OpenTofu · Terragrunt · GitHub Actions · GCP · Cloud Foundation Fabric</sub>
-
-### [playground-ai-engineering](https://github.com/x-ruiz/playground-ai-engineering)
-A monorepo of custom agent skills and **Google ADK** agents. The main project is the *Obsidian Note Generator*: give it a YouTube video, a blog post, or a docs URL and it writes a structured note that follows my vault's conventions. In other words, an AI agent that feeds my learning system.
-<br/><sub>Python · Google ADK · LLM agents</sub>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
 ## Playgrounds
 
 | Repo | What's inside |
