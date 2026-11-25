@@ -116,4 +116,4 @@ A monorepo of custom agent skills and **Google ADK** agents. The main project is
 ---
 
 ## 📫 Connect
-- LinkedIn: <!-- add your LinkedIn URL -->
+- LinkedIn: [linkedin.com/in/x-ruiz](https://www.linkedin.com/in/x-ruiz/)
