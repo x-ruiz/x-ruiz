@@ -36,9 +36,9 @@ I organize my learning in **[obsidian-notes](https://github.com/x-ruiz/obsidian-
 
 | Category | Focus areas | Where it shows up in my repos |
 |---|---|---|
-| **Cloud Infrastructure** | Architecture design, IaC, containers, networking, cloud services | Unified data platform, Steam analytics platform, GCP env CLI, container from scratch |
+| **Cloud Infrastructure** | Architecture design, IaC, containers, networking, cloud services | GCP Org bootstrap, Unified data platform, Steam analytics platform, GCP env CLI, container from scratch |
 | **Data Processing** | ETL/ELT, big data frameworks, storage, streaming, data quality | Lakehouse SDK, Premier League, F1, CTA tracker, Airflow ETL |
-| **Information Security** | Secure coding, authN/Z, secrets management, threat modeling, compliance | KMS-encrypted state & keyless WIF auth in the unified data platform |
+| **Information Security** | Secure coding, authN/Z, secrets management, threat modeling, compliance | KMS-encrypted state, Org Policies & keyless WIF auth in GCP Org bootstrap |
 | **Software Engineering** | Design principles & patterns, testing, build & CI/CD | Lakehouse SDK (SPI plugins, Template Method), LeetCode |
 | **System Resiliency** | Observability, fault tolerance, chaos engineering, incident response, DR | *Up next* |
 | **AI Engineering** | ML pipelines, agent development, MLOps, ethical AI | ADK agents in playground-ai-engineering |
@@ -80,7 +80,7 @@ Each project inside a playground is self-contained, with no imports across proje
 
 **Graduations in progress:**
 - **`sdk_lakehouse` → `sdk-lakehouse`:** the [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) is being developed through specs and iteration in `playground-data-engineering`. Its name already follows the `sdk-*` convention, so it keeps the same name when it moves out.
-- **`platform_unified_data_gcp` → `platform-unified-data`:** a GCP unified data platform foundation being developed in [`playground-cloud-engineering`](https://github.com/x-ruiz/playground-cloud-engineering).
+- **`platform_unified_data_gcp` → `platform-unified-data`:** a GCP unified data platform foundation being developed in [`playground-cloud-engineering`](https://github.com/x-ruiz/playground-cloud-engineering) (its Org/folder bootstrap layer graduated to [`platform_gcp_org_bootstrap`](https://github.com/x-ruiz/platform_gcp_org_bootstrap)).
 
 <img src="assets/divider.svg" width="100%" alt=""/>
 
@@ -91,7 +91,7 @@ A multi-module **Java 17** SDK for declarative, GitOps-style management of Icebe
 <br/><sub>Java 17 · Apache Iceberg 1.10 · Maven · Docker · AWS · GCP BigLake</sub>
 
 ### [Unified Data Platform](https://github.com/x-ruiz/playground-cloud-engineering/tree/main/platform_unified_data_gcp) · *playground → platform-unified-data*
-A GCP data platform foundation managed through GitOps. It covers org and seed-project bootstrap, KMS-encrypted remote state, and keyless GitHub Actions auth through Workload Identity Federation (with separate plan and apply identities). The platform is composed from tag-pinned Cloud Foundation Fabric modules, with thin Terragrunt wrappers for `dev`, `uat` and `prod`. Applies to `uat` and `prod` are gated.
+A GCP data platform foundation managed through GitOps, built on top of [`platform_gcp_org_bootstrap`](https://github.com/x-ruiz/platform_gcp_org_bootstrap) for Org/folder policies, KMS-encrypted remote state, and keyless GitHub Actions auth through Workload Identity Federation (with separate plan and apply identities). The platform is composed from tag-pinned Cloud Foundation Fabric modules, with thin Terragrunt wrappers for `dev`, `uat` and `prod`. Applies to `uat` and `prod` are gated.
 <br/><sub>OpenTofu · Terragrunt · GitHub Actions · GCP · Cloud Foundation Fabric</sub>
 
 ### [playground-ai-engineering](https://github.com/x-ruiz/playground-ai-engineering)
@@ -122,6 +122,7 @@ A monorepo of custom agent skills and **Google ADK** agents. The main project is
 ### Cloud & Platform Engineering
 | Project | What it does | Stack |
 |---|---|---|
+| [platform_gcp_org_bootstrap](https://github.com/x-ruiz/platform_gcp_org_bootstrap) | Generalized OpenTofu GCP Organization bootstrap: Seed project, Cloud KMS-encrypted GCS state, multi-folder & Org Policies, and per-folder keyless GitHub Actions WIF. | OpenTofu, GCP, Cloud KMS, WIF, GitHub Actions |
 | [project-steam-analytics-platform](https://github.com/x-ruiz/project-steam-analytics-platform) | A Steam gaming analytics app with a Go (Gin) API, a React + Nivo charts frontend, and GCP infrastructure provisioned with Terraform. | Go, React, Terraform, GCP |
 | [project-go-image-uploader](https://github.com/x-ruiz/project-go-image-uploader) | A containerized web app for uploading images to Google Cloud Storage. | Go, Gin, GCS, Docker |
 | [cli-gcp-environment-configuration](https://github.com/x-ruiz/cli-gcp-environment-configuration) | A Python CLI that automates setting up a new GCP project environment. | Python, GCP |
