@@ -33,25 +33,31 @@ Every repo name starts with a prefix that says what stage it's at:
 |---|---|
 | **`playground-*`** | **Where everything starts.** Sandbox monorepos, one per discipline (`playground-data-engineering`, `playground-ai-engineering`, …). Here I prototype, write specs, take notes from books and courses, and iterate fast with no pressure to be "done." |
 | **`project-*`** | **A self-contained build** with a clear goal and end-to-end scope. An idea graduates from a playground once it has a defined problem, a design, and enough substance to stand on its own. |
-| **`platform-*`** | **Reusable foundations.** These are shared SDKs, infrastructure modules, and tooling that other projects build on. When something in a playground turns out to be broadly reusable (not just a one-off), it matures into a platform repo. |
+| **`platform-*`** | **Shared infrastructure.** Cloud platforms that other projects deploy onto and build on. They grow out of `playground-cloud-engineering`. The first one in progress is `platform-unified-data`. |
+| **`sdk-*`** | **Standalone libraries.** When a library built in a playground becomes stable enough to publish and version, it moves into its own `sdk-*` repo. For example, `sdk_lakehouse` in `playground-data-engineering` will become `sdk-lakehouse`. |
 | `tutorial-*` | Short, focused exercises for learning a single concept. |
 
 ```mermaid
 flowchart LR
     N["📓 obsidian-notes<br/>study & plan"] --> P["🧪 playground-*<br/>prototype & iterate"]
     P -->|has a clear goal & scope| PR["🚀 project-*<br/>end-to-end build"]
-    P -->|reusable across projects| PL["🏗️ platform-*<br/>shared SDKs & infra"]
-    PL -.->|powers| PR
+    P -->|shared infrastructure| PL["🏗️ platform-*<br/>cloud platforms"]
+    P -->|reusable library| SDK["📦 sdk-*<br/>versioned libraries"]
+    PL -.->|hosts| PR
+    SDK -.->|used by| PR
+    SDK -.->|used by| PL
     PR -.->|lessons learned| N
 ```
 
-**Example:** the [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) is still in `playground-data-engineering`, where it's developed through specs and iteration. It's designed to become a `platform-*` repo that future `project-*` pipelines can use to manage Iceberg tables.
+**Examples in progress:**
+- **`sdk_lakehouse` → `sdk-lakehouse`:** the [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) is being developed through specs and iteration in `playground-data-engineering`. Once it's stable it will graduate into its own `sdk-lakehouse` repo. The prefix stays the same, so the name carries over.
+- **`platform-unified-data`:** a unified data platform being developed in `playground-cloud-engineering`. It will graduate into its own `platform-*` repo.
 
 ---
 
 ## ⭐ Featured
 
-### [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) · *playground → platform*
+### [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) · *playground → sdk-lakehouse*
 A multi-module **Java 17** SDK for declarative, GitOps-style management of Iceberg namespaces and tables. One pipeline codebase applies the same YAML definitions to local MinIO, an AWS Iceberg REST catalog, or **Google BigLake**. You switch targets by changing environment config and dropping in a cloud plugin JAR, which is loaded through a `ServiceLoader` SPI.
 <sub>Java 17 · Apache Iceberg 1.10 · Maven · Docker · AWS · GCP BigLake</sub>
 
