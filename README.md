@@ -80,7 +80,7 @@ Each project inside a playground is self-contained, with no imports across proje
 
 **Graduations in progress:**
 - **`sdk_lakehouse` → `sdk-lakehouse`:** the [Lakehouse SDK](https://github.com/x-ruiz/playground-data-engineering/tree/main/maven_projects/sdk_lakehouse) is being developed through specs and iteration in `playground-data-engineering`. Its name already follows the `sdk-*` convention, so it keeps the same name when it moves out.
-- **`platform_unified_data_gcp` → `platform-unified-data`:** a GCP unified data platform foundation being developed in `playground-cloud-engineering`.
+- **`platform_unified_data_gcp` → `platform-unified-data`:** a GCP unified data platform foundation being developed in [`playground-cloud-engineering`](https://github.com/x-ruiz/playground-cloud-engineering).
 
 <img src="assets/divider.svg" width="100%" alt=""/>
 
@@ -90,7 +90,7 @@ Each project inside a playground is self-contained, with no imports across proje
 A multi-module **Java 17** SDK for declarative, GitOps-style management of Iceberg namespaces and tables. One pipeline codebase applies the same YAML definitions to local MinIO, an AWS Iceberg REST catalog, or **Google BigLake**. You switch targets by changing environment config and dropping in a cloud plugin JAR, which is loaded through a `ServiceLoader` SPI.
 <br/><sub>Java 17 · Apache Iceberg 1.10 · Maven · Docker · AWS · GCP BigLake</sub>
 
-### Unified Data Platform · *playground → platform-unified-data*
+### [Unified Data Platform](https://github.com/x-ruiz/playground-cloud-engineering/tree/main/platform_unified_data_gcp) · *playground → platform-unified-data*
 A GCP data platform foundation managed through GitOps. It covers org and seed-project bootstrap, KMS-encrypted remote state, and keyless GitHub Actions auth through Workload Identity Federation (with separate plan and apply identities). The platform is composed from tag-pinned Cloud Foundation Fabric modules, with thin Terragrunt wrappers for `dev`, `uat` and `prod`. Applies to `uat` and `prod` are gated.
 <br/><sub>OpenTofu · Terragrunt · GitHub Actions · GCP · Cloud Foundation Fabric</sub>
 
@@ -105,7 +105,7 @@ A monorepo of custom agent skills and **Google ADK** agents. The main project is
 | Repo | What's inside |
 |---|---|
 | [playground-data-engineering](https://github.com/x-ruiz/playground-data-engineering) | The Lakehouse SDK, a weather pipeline, and notes from *Spark: The Definitive Guide* and *Taming Big Data* |
-| `playground-cloud-engineering` <sub>(private)</sub> | Infrastructure-as-code, GitOps patterns, and platform foundations, including the Unified Data Platform on GCP |
+| [playground-cloud-engineering](https://github.com/x-ruiz/playground-cloud-engineering) | Infrastructure-as-code, GitOps patterns, and platform foundations, including the Unified Data Platform on GCP |
 | [playground-ai-engineering](https://github.com/x-ruiz/playground-ai-engineering) | Google ADK agents and agent skills |
 
 ## Projects
