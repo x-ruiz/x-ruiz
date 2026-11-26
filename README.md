@@ -60,20 +60,42 @@ Every repo name starts with a prefix that says what stage it's at:
 | `tutorial-*` | Short, focused exercises for learning a single concept. |
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#18181B','primaryTextColor':'#F4F4F5','primaryBorderColor':'#7C3AED','lineColor':'#A1A1AA','fontFamily':'Helvetica, Arial, sans-serif','edgeLabelBackground':'#27272A'}}}%%
+%%{init: {"theme": "base", "themeCSS": "svg { background-color: #09090B !important; border-radius: 8px; }", "themeVariables": {"darkMode": true, "background": "#09090B", "mainBkg": "#18181B", "textColor": "#F4F4F5", "primaryColor": "#18181B", "primaryTextColor": "#F4F4F5", "primaryBorderColor": "#7C3AED", "lineColor": "#A855F7", "secondaryColor": "#16141F", "tertiaryColor": "#0F0F14", "edgeLabelBackground": "#18181B", "clusterBkg": "#0F0F14", "clusterBorder": "#52525B", "titleColor": "#D8B4FE", "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif", "fontSize": "13px"}, "flowchart": {"curve": "basis", "nodeSpacing": 42, "rankSpacing": 56, "padding": 14}}}%%
 flowchart LR
-    N["obsidian-notes<br/>study & plan"] --> P["playground-*<br/>prototype & iterate"]
-    P -->|clear goal & scope| PR["project-*<br/>end-to-end build"]
-    P -->|shared infrastructure| PL["platform-*<br/>cloud platforms"]
-    P -->|reusable library| SDK["sdk-*<br/>versioned libraries"]
-    PL -.->|hosts| PR
-    SDK -.->|used by| PR
-    SDK -.->|used by| PL
-    PR -.->|lessons learned| N
-    classDef hub fill:#7C3AED,stroke:#A78BFA,color:#FFFFFF;
-    classDef grey fill:#27272A,stroke:#52525B,color:#E4E4E7;
-    class P hub;
-    class N grey;
+    subgraph Knowledge["1. Knowledge Base"]
+        N[("obsidian-notes\nMastery Framework · 6 Pillars\nStudy, Specs & Plan")]
+    end
+
+    subgraph Incubator["2. Discipline Monorepos"]
+        P["playground-*\nData · Cloud · AI Monorepos\nPrototype & Iterate · Self-Contained"]
+    end
+
+    subgraph Graduated["3. Standalone Repositories"]
+        PR["project-*\nEnd-to-End Builds\nClear Problem & Scope"]
+        PL["platform-*\nShared Cloud Platforms\nIaC & GitOps Foundations"]
+        SDK["sdk-*\nVersioned Libraries\nPublished & Reusable"]
+    end
+
+    N -->|"concepts & specs"| P
+    P ==>|"clear goal & scope"| PR
+    P ==>|"shared infrastructure"| PL
+    P ==>|"reusable library"| SDK
+    PL -.->|"hosts"| PR
+    SDK -.->|"used by"| PR
+    SDK -.->|"used by"| PL
+    PR -.->|"lessons learned"| N
+
+    classDef core fill:#2E1065,stroke:#A855F7,stroke-width:2px,color:#F5F3FF
+    classDef service fill:#18181B,stroke:#7C3AED,stroke-width:1.5px,color:#F4F4F5
+    classDef store fill:#09090B,stroke:#C084FC,stroke-width:1.5px,color:#EDE9FE
+
+    class P core
+    class N store
+    class PR,PL,SDK service
+
+    style Knowledge fill:#18181B,stroke:#52525B,stroke-width:1.25px,stroke-dasharray:5 4,color:#A1A1AA
+    style Incubator fill:#16141F,stroke:#6D28D9,stroke-width:1.25px,stroke-dasharray:4 3,color:#C4B5FD
+    style Graduated fill:#0F0F14,stroke:#52525B,stroke-width:1.5px,color:#D8B4FE
 ```
 
 Each project inside a playground is self-contained, with no imports across projects. That way it can be split out into its own repo, along with its CI workflows, when it's ready.
